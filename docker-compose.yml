@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  main:
+    build:
+      context: ./main
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./main/source:/app
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  db:
+    build:
+      context: ./db
+    restart: always
+    env_file:
+      - .env
